@@ -18,10 +18,8 @@ import { initializeTransactionalContext } from 'typeorm-transactional';
 import { AppModule } from './app.module.ts';
 import { HttpExceptionFilter } from './filters/bad-request.filter.ts';
 import { QueryFailedFilter } from './filters/query-failed.filter.ts';
-import { TranslationInterceptor } from './interceptors/translation-interceptor.service.ts';
 import { setupSwagger } from './setup-swagger.ts';
 import { ApiConfigService } from './shared/services/api-config.service.ts';
-import { TranslationService } from './shared/services/translation.service.ts';
 import { SharedModule } from './shared/shared.module.ts';
 
 export async function bootstrap(): Promise<NestExpressApplication> {
@@ -53,9 +51,6 @@ export async function bootstrap(): Promise<NestExpressApplication> {
 
   app.useGlobalInterceptors(
     new ClassSerializerInterceptor(reflector),
-    new TranslationInterceptor(
-      app.select(SharedModule).get(TranslationService),
-    ),
   );
 
   app.useGlobalPipes(
@@ -96,10 +91,8 @@ export async function bootstrap(): Promise<NestExpressApplication> {
 
   const port = configService.appConfig.port;
 
-  if ((<any>import.meta).env?.PROD) {
-    await app.listen(port);
-    console.info(`server running on ${await app.getUrl()}`);
-  }
+  await app.listen(port);
+  console.info(`server running on http://localhost:${port}/documentation`);
 
   return app;
 }
