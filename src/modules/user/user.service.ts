@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import type { CommandBus } from '@nestjs/cqrs';
+import { CommandBus } from '@nestjs/cqrs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 import type { FindOptionsWhere } from 'typeorm';
@@ -10,16 +10,16 @@ import type { PageDto } from '../../common/dto/page.dto.ts';
 import { FileNotImageException } from '../../exceptions/file-not-image.exception.ts';
 import { UserNotFoundException } from '../../exceptions/user-not-found.exception.ts';
 import type { IFile } from '../../interfaces/IFile.ts';
-import type { AwsS3Service } from '../../shared/services/aws-s3.service.ts';
-import type { ValidatorService } from '../../shared/services/validator.service.ts';
+import { ValidatorService } from '../../shared/services/validator.service.ts';
 import type { Reference } from '../../types.ts';
 import type { UserRegisterDto } from '../auth/dto/user-register.dto.ts';
 import { CreateSettingsCommand } from './commands/create-settings.command.ts';
 import { CreateSettingsDto } from './dtos/create-settings.dto.ts';
-import type { UserDto } from './dtos/user.dto.ts';
-import type { UsersPageOptionsDto } from './dtos/users-page-options.dto.ts';
+import { UserDto } from './dtos/user.dto.ts';
+import { UsersPageOptionsDto } from './dtos/users-page-options.dto.ts';
 import { UserEntity } from './user.entity.ts';
-import type { UserSettingsEntity } from './user-settings.entity.ts';
+import { UserSettingsEntity } from './user-settings.entity.ts';
+import { AwsS3Service } from '../../shared/services/aws-s3.service.ts';
 
 @Injectable()
 export class UserService {

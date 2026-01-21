@@ -1,7 +1,7 @@
 import path from 'node:path';
 
 import { Injectable } from '@nestjs/common';
-import type { ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 import type { ThrottlerOptions } from '@nestjs/throttler';
 import type { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import parse from 'parse-duration';
@@ -109,7 +109,7 @@ export class ApiConfigService {
       entities,
       migrations,
       dropSchema: this.isTest,
-      type: 'postgres',
+      type: 'mysql',
       host: this.getString('DB_HOST'),
       port: this.getNumber('DB_PORT'),
       username: this.getString('DB_USERNAME'),
