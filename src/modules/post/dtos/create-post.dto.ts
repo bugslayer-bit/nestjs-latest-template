@@ -1,10 +1,9 @@
-import { CreateTranslationDto } from '../../../common/dto/create-translation.dto.ts';
-import { TranslationsField } from '../../../decorators/field.decorators.ts';
+import { ApiProperty } from "@nestjs/swagger";
 
 export class CreatePostDto {
-  @TranslationsField({ type: CreateTranslationDto })
-  title!: CreateTranslationDto[];
+  @ApiProperty({ type: String })
+  title!: string;
 
-  @TranslationsField({ type: CreateTranslationDto })
-  description!: CreateTranslationDto[];
+  @ApiProperty({ type: String })
+  description!: string;
 }

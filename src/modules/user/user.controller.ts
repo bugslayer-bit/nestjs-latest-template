@@ -17,7 +17,6 @@ import {
   Auth,
   UUIDParam,
 } from '../../decorators/http.decorators.ts';
-import { UseLanguageInterceptor } from '../../interceptors/language-interceptor.service.ts';
 import { UserDto } from './dtos/user.dto.ts';
 import type { UsersPageOptionsDto } from './dtos/users-page-options.dto.ts';
 import type { UserEntity } from './user.entity.ts';
@@ -33,7 +32,6 @@ export class UserController {
   @Get('admin')
   @Auth([RoleType.USER])
   @HttpCode(HttpStatus.OK)
-  @UseLanguageInterceptor()
   async admin(@AuthUser() user: UserEntity) {
     return {
       text: ` ${user.firstName}`,

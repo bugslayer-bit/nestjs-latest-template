@@ -1,6 +1,5 @@
 import { ClsServiceManager } from 'nestjs-cls';
 
-import type { LanguageCode } from '../constants/language-code.ts';
 import type { UserEntity } from '../modules/user/user.entity.ts';
 
 export class ContextProvider {
@@ -34,11 +33,7 @@ export class ContextProvider {
   static setLanguage(language: string): void {
     ContextProvider.set(ContextProvider.languageKey, language);
   }
-
-  static getLanguage(): LanguageCode | undefined {
-    return ContextProvider.get<LanguageCode>(ContextProvider.languageKey);
-  }
-
+  
   static getAuthUser(): UserEntity | undefined {
     return ContextProvider.get<UserEntity>(ContextProvider.authUserKey);
   }

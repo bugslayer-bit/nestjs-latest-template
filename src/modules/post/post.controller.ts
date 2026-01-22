@@ -25,7 +25,6 @@ import {
   Auth,
   UUIDParam,
 } from '../../decorators/http.decorators.ts';
-import { UseLanguageInterceptor } from '../../interceptors/language-interceptor.service.ts';
 import type { UserEntity } from '../user/user.entity.ts';
 import type { CreatePostDto } from './dtos/create-post.dto.ts';
 import { PostDto } from './dtos/post.dto.ts';
@@ -56,7 +55,6 @@ export class PostController {
 
   @Get()
   @Auth([RoleType.USER])
-  @UseLanguageInterceptor()
   @ApiPageResponse({ type: PostDto })
   async getPosts(
     @Query() postsPageOptionsDto: PostPageOptionsDto,
